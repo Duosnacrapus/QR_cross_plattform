@@ -3,16 +3,18 @@ using System.IO;
 using SkiaSharp;
 using ZXing;
 using ZXing.Common;
+using ZXing.Net;
+using ZXing.Rendering;
 
 class Program
 {
     static void Main(string[] args)
     {
         // Text in QR code
-        string textToEncode = "what's in the qr?";
+        string textToEncode = "https://www.carola-zimmer.com";
 
         // Load  logo as  SKBitmap (SkiaSharp's equivalent to Bitmap)
-        using (SKBitmap logo = SKBitmap.Decode("path_to_your_logo.png"))
+        using (SKBitmap logo = SKBitmap.Decode("Logo_final.png"))
         {
             // Create writer
             BarcodeWriter<SKBitmap> barcodeWriter = new BarcodeWriter<SKBitmap>
@@ -24,7 +26,8 @@ class Program
                     Height = 300, // Adjust the size as needed
                     Margin = 0, // You can adjust the margin if needed
                     PureBarcode = false // This ensures it's a QR code, not a barcode
-                }
+                },
+                Renderer = new BitmapRenderer(),
             };
 
             // Generate code
@@ -44,11 +47,10 @@ class Program
             // Save the QR code with the logo as an image
             using (SKImage image = SKImage.FromBitmap(qrCodeBitmap))
             using (SKData encoded = image.Encode(SKEncodedImageFormat.Png, 100))
-            using (Stream stream = File.OpenWrite("qr_code_with_logo.png"))
+            using (System.IO.Stream stream = System.IO.File.OpenWrite("qr_code_with_logo.png"))
             {
                 encoded.SaveTo(stream);
             }
-
         }
     }
 }

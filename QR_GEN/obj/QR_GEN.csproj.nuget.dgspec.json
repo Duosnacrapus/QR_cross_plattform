@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[2.88.6, )"
             },
+            "SkiaSharp.NativeAssets.Linux.NoDependencies": {
+              "target": "Package",
+              "version": "[2.88.6, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[7.0.0, )"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XH6/hIpI5lf4fpNz4ib3UJJvQFtlENbFEQKZcKzQKuQSyKxFSiC5aWyA1ZbK/rX3ngaM+35X9pOyWxuvgf5QVw==",
+  "dgSpecHash": "BUz38Rj7CzcKVkySHP/TIIVfOUov+HttvLh+MLliiICxcZE3LnhfvWzQdTWXCW9RdU1EPlwMPxnxcfLpg5CEOw==",
   "success": true,
   "projectFilePath": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/home/r/.nuget/packages/qrcoder/1.4.3/qrcoder.1.4.3.nupkg.sha512",
     "/home/r/.nuget/packages/sixlabors.imagesharp/3.0.2/sixlabors.imagesharp.3.0.2.nupkg.sha512",
     "/home/r/.nuget/packages/skiasharp/2.88.6/skiasharp.2.88.6.nupkg.sha512",
+    "/home/r/.nuget/packages/skiasharp.nativeassets.linux.nodependencies/2.88.6/skiasharp.nativeassets.linux.nodependencies.2.88.6.nupkg.sha512",
     "/home/r/.nuget/packages/skiasharp.nativeassets.macos/2.88.6/skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",
     "/home/r/.nuget/packages/skiasharp.nativeassets.win32/2.88.6/skiasharp.nativeassets.win32.2.88.6.nupkg.sha512",
     "/home/r/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
