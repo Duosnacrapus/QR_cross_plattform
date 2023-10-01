@@ -1,56 +1,47 @@
 using System;
-using System.IO;
 using SkiaSharp;
-using ZXing;
-using ZXing.Common;
-using ZXing.Net;
-using ZXing.Rendering;
+using SkiaSharp.QrCode;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Text in QR code
-        string textToEncode = "https://www.carola-zimmer.com";
+        var content = "Your QR Code Content Here";
+        var level = ECCLevel.H;
+        var qrGenerator = new QRCodeGenerator();
+        var qrCodeData = qrGenerator.CreateQrCode(content, level);
 
-        // Load  logo as  SKBitmap (SkiaSharp's equivalent to Bitmap)
-        using (SKBitmap logo = SKBitmap.Decode("Logo_final.png"))
+        // Define the image size and create a surface and canvas
+        var width = 512;
+        var height = 512;
+        var imageInfo = new SKImageInfo(width, height);
+        var surface = SKSurface.Create(imageInfo);
+        var canvas = surface.Canvas;
+
+        // Set the background color (optional)
+        canvas.Clear(SKColors.White);
+
+        // Draw the QR code onto the canvas
+        var paint = new SKPaint();
+        paint.IsAntialias = true;
+        paint.Color = SKColors.Black;
+
+        var moduleSize = Math.Min(width, height) / qrCodeData.ModuleMatrix.Count;
+        for (int i = 0; i < qrCodeData.ModuleMatrix.Count; i++)
         {
-            // Create writer
-            BarcodeWriter<SKBitmap> barcodeWriter = new BarcodeWriter<SKBitmap>
+            for (int j = 0; j < qrCodeData.ModuleMatrix[i].Count; j++)
             {
-                Format = BarcodeFormat.QR_CODE,
-                Options = new EncodingOptions
+                if (qrCodeData.ModuleMatrix[i][j])
                 {
-                    Width = 300, // Adjust the size as needed
-                    Height = 300, // Adjust the size as needed
-                    Margin = 0, // You can adjust the margin if needed
-                    PureBarcode = false // This ensures it's a QR code, not a barcode
-                },
-                Renderer = new BitmapRenderer(),
-            };
-
-            // Generate code
-            SKBitmap qrCodeBitmap = barcodeWriter.Write(textToEncode);
-
-            // Overlay the logo on the QR code
-            int logoWidth = qrCodeBitmap.Width / 4;
-            int logoHeight = qrCodeBitmap.Height / 4;
-            int x = (qrCodeBitmap.Width - logoWidth) / 2;
-            int y = (qrCodeBitmap.Height - logoHeight) / 2;
-
-            using (SKCanvas canvas = new SKCanvas(qrCodeBitmap))
-            {
-                canvas.DrawBitmap(logo, new SKRect(x, y, x + logoWidth, y + logoHeight));
-            }
-
-            // Save the QR code with the logo as an image
-            using (SKImage image = SKImage.FromBitmap(qrCodeBitmap))
-            using (SKData encoded = image.Encode(SKEncodedImageFormat.Png, 100))
-            using (System.IO.Stream stream = System.IO.File.OpenWrite("qr_code_with_logo.png"))
-            {
-                encoded.SaveTo(stream);
+                    canvas.DrawRect(j * moduleSize, i * moduleSize, moduleSize, moduleSize, paint);
+                }
             }
         }
+
+        // Save the QR code as an image
+        var image = surface.Snapshot();
+        var data = image.Encode(SKEncodedImageFormat.Png, 100);
+        var stream = System.IO.File.OpenWrite("qr_code.png");
+        data.SaveTo(stream);
     }
 }

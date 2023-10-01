@@ -39,29 +39,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "QRCoder": {
-              "target": "Package",
-              "version": "[1.4.3, )"
-            },
-            "SixLabors.ImageSharp": {
-              "target": "Package",
-              "version": "[3.0.2, )"
-            },
             "SkiaSharp": {
               "target": "Package",
               "version": "[2.88.6, )"
             },
-            "SkiaSharp.NativeAssets.Linux.NoDependencies": {
+            "SkiaSharp.NativeAssets.Linux": {
               "target": "Package",
               "version": "[2.88.6, )"
             },
-            "System.Drawing.Common": {
+            "SkiaSharp.QrCode": {
               "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "ZXing.Net": {
-              "target": "Package",
-              "version": "[0.16.9, )"
+              "version": "[0.6.0, )"
             }
           },
           "imports": [
