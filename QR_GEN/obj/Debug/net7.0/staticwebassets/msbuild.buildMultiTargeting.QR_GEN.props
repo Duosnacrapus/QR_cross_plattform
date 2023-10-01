@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/QR_GEN.props" />
+</Project>

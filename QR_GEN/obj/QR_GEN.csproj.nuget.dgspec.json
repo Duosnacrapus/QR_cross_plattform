@@ -1,0 +1,87 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj": {}
+  },
+  "projects": {
+    "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj",
+        "projectName": "QR_GEN",
+        "projectPath": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj",
+        "packagesPath": "/home/r/.nuget/packages/",
+        "outputPath": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/r/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/share/dotnet/sdk/7.0.306/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.4.3, )"
+            },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[2.88.6, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
