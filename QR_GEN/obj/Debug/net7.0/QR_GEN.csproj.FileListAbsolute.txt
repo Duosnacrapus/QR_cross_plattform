@@ -11,12 +11,10 @@
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/QR_GEN.runtimeconfig.json
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/QR_GEN.dll
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/QR_GEN.pdb
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/SkiaSharp.dll
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/SkiaSharp.QrCode.dll
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/osx/native/libSkiaSharp.dylib
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/win-arm64/native/libSkiaSharp.dll
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/win-x64/native/libSkiaSharp.dll
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/win-x86/native/libSkiaSharp.dll
+/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/QRCoder.dll
+/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/SixLabors.Fonts.dll
+/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/SixLabors.ImageSharp.dll
+/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/SixLabors.ImageSharp.Drawing.dll
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/staticwebassets/msbuild.QR_GEN.Microsoft.AspNetCore.StaticWebAssets.props
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/staticwebassets/msbuild.build.QR_GEN.props
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.QR_GEN.props
@@ -31,7 +29,3 @@
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/QR_GEN.pdb
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/QR_GEN.genruntimeconfig.cache
 /home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/obj/Debug/net7.0/ref/QR_GEN.dll
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/linux-arm/native/libSkiaSharp.so
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/linux-arm64/native/libSkiaSharp.so
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/linux-musl-x64/native/libSkiaSharp.so
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/runtimes/linux-x64/native/libSkiaSharp.so

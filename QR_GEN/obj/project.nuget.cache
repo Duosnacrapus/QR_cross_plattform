@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "x+GdeaVC6mv/A73EWhjlNSMRYK86ERIeSIcU7uTFdzDJRsg6Sv/OsLYFb71YaZ+MCM2zlxrvgyfDB+UGbvyeBQ==",
+  "dgSpecHash": "vagoeQyz91fmGpMKlPfjbhbYjFIY7GKM8cHvR+PlmwauM2E4bbyVTxKHaQWdgrRpd535aTTFcnr87nG1CeBR/A==",
   "success": true,
   "projectFilePath": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj",
   "expectedPackageFiles": [
-    "/home/r/.nuget/packages/skiasharp/2.88.6/skiasharp.2.88.6.nupkg.sha512",
-    "/home/r/.nuget/packages/skiasharp.nativeassets.linux/2.88.6/skiasharp.nativeassets.linux.2.88.6.nupkg.sha512",
-    "/home/r/.nuget/packages/skiasharp.nativeassets.macos/2.88.6/skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",
-    "/home/r/.nuget/packages/skiasharp.nativeassets.win32/2.88.6/skiasharp.nativeassets.win32.2.88.6.nupkg.sha512",
-    "/home/r/.nuget/packages/skiasharp.qrcode/0.6.0/skiasharp.qrcode.0.6.0.nupkg.sha512"
+    "/home/r/.nuget/packages/qrcoder-imagesharp/0.9.0/qrcoder-imagesharp.0.9.0.nupkg.sha512",
+    "/home/r/.nuget/packages/sixlabors.fonts/2.0.0/sixlabors.fonts.2.0.0.nupkg.sha512",
+    "/home/r/.nuget/packages/sixlabors.imagesharp/3.0.2/sixlabors.imagesharp.3.0.2.nupkg.sha512",
+    "/home/r/.nuget/packages/sixlabors.imagesharp.drawing/2.0.0/sixlabors.imagesharp.drawing.2.0.0.nupkg.sha512",
+    "/home/r/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/home/r/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -39,17 +39,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "SkiaSharp": {
+            "QRCoder-ImageSharp": {
               "target": "Package",
-              "version": "[2.88.6, )"
+              "version": "[0.9.0, )"
             },
-            "SkiaSharp.NativeAssets.Linux": {
+            "SixLabors.ImageSharp": {
               "target": "Package",
-              "version": "[2.88.6, )"
+              "version": "[3.0.2, )"
             },
-            "SkiaSharp.QrCode": {
+            "SixLabors.ImageSharp.Drawing": {
               "target": "Package",
-              "version": "[0.6.0, )"
+              "version": "[2.0.0, )"
             }
           },
           "imports": [
