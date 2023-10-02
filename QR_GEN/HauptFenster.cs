@@ -1,18 +1,13 @@
 using Gtk;
-using QRCoder;
-using System;
-using System.IO;
-using SixLabors.ImageSharp;
+using Pango;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 using static QRCoder.QRCodeGenerator;
-using SixLabors.ImageSharp;
 
 public partial class HauptFenster : Gtk.Window
 {
     private Entry textEntry;
-    private Entry logoPathEntry;
-    private Entry outputPathEntry;
+    // private Entry logoPathEntry;
+    // private Entry outputPathEntry;
     private Entry scaleEntry;
     private Button generateButton;
     private ComboBoxText eccLevelComboBox;
@@ -23,7 +18,9 @@ public partial class HauptFenster : Gtk.Window
     private TextView consoleTextView; // TextView zur Anzeige der Konsolenausgaben
 
     private FileChooserDialog fileChooserEingabe;
+    private Label eingabeLabel;
     private FileChooserDialog fileChooserAusgabe;
+    private Label ausgabeLabel;
 
 
 
@@ -33,48 +30,70 @@ public partial class HauptFenster : Gtk.Window
         SetDefaultSize(400, 200);
 
 
-        var mainVBox = new VBox();
+        var mainBox = new Box(Orientation.Vertical, 0);
 
         textEntry = new Entry();
         textEntry.PlaceholderText = "QR Text";
         textEntry.Text = "Test";
-        mainVBox.PackStart(textEntry, false, false, 10);
+        mainBox.PackStart(textEntry, false, false, 10);
 
+
+        var inputBox = new Box(Orientation.Vertical, 0); // Erstelle eine vertikale Box (VBox) für die Widgets und setze den Abstand auf 0
+        mainBox.PackStart(inputBox, false, false, 10); // Füge die VBox zur Hauptbox hinzu und setze den Abstand auf 0
         // Button zum Öffnen des Logo-Dateiauswahldialogs
         var openFileButtonEingabe = new Button("Dateipfad zu Logo png auswählen");
         openFileButtonEingabe.Clicked += OnOpenFileButtonClicked;
-        mainVBox.PackStart(openFileButtonEingabe, false, false, 10);
+        inputBox.PackStart(openFileButtonEingabe, false, false, 0); // Füge den Button zur VBox hinzu und setze den Abstand auf 0
         // Dateiauswahldialog initialisieren
-        fileChooserEingabe = new FileChooserDialog("Datei auswählen", this, FileChooserAction.Open, "Abbrechen", ResponseType.Cancel, "Öffnen", ResponseType.Accept);
-        fileChooserEingabe.Filter = new FileFilter();
+        fileChooserEingabe = new FileChooserDialog("Datei auswählen", this, FileChooserAction.Open, "Abbrechen", ResponseType.Cancel, "Öffnen", ResponseType.Accept)
+        {
+            Filter = new FileFilter()
+        };
         fileChooserEingabe.Filter.AddPattern("*.png");
         fileChooserEingabe.Filter.Name = "PNG-Dateien";
-        // Eingabepfad
-        logoPathEntry = new Entry();
-        logoPathEntry.PlaceholderText = "Logo Path";
-        logoPathEntry.Text = "logo4.png";
-        mainVBox.PackStart(logoPathEntry, false, false, 10);
+        // Eingabepfadlabel
+        eingabeLabel = new Label
+        {
+            Text = "Pfad zum Logo: ",
+            Ellipsize = EllipsizeMode.Start, // Falls der Text zu lang wird, wird er am Anfang abgeschnitten
+            Selectable = true, // Damit der Text ausgewählt und kopiert werden kann
+            Xalign = 0, // Linksbündig ausrichten
+            Yalign = 0.5f // Vertikal zentriert ausrichten
+        };
+        // Fügen Sie das Label-Widget zur Ausgabe-Box hinzu
+        inputBox.PackStart(eingabeLabel, false, false, 0);
 
+
+        var outputBox = new Box(Orientation.Vertical, 0); // Erstelle eine vertikale Box (VBox) für die Widgets und setze den Abstand auf 0
+        mainBox.PackStart(outputBox, false, false, 10); // Füge die VBox zur Hauptbox hinzu und setze den Abstand auf 0
         // Button zum Öffnen des Ausgabe-Dateiauswahldialogs
         var openFileButtonAusgabe = new Button("Ausgabedatei auswählen");
         openFileButtonAusgabe.Clicked += OnAusgabeFileButtonClicked;
-        mainVBox.PackStart(openFileButtonAusgabe, false, false, 10);
+        outputBox.PackStart(openFileButtonAusgabe, false, false, 0);
         // Dateiauswahldialog für die Ausgabe initialisieren
         fileChooserAusgabe = new FileChooserDialog("Datei speichern", this, FileChooserAction.Save, "Abbrechen", ResponseType.Cancel, "Speichern", ResponseType.Accept);
         fileChooserAusgabe.Filter = new FileFilter();
         fileChooserAusgabe.Filter.AddPattern("*.png");
         fileChooserAusgabe.Filter.Name = "PNG-Dateien";
         fileChooserAusgabe.DoOverwriteConfirmation = true; // Damit der Dialog bei Überschreiben nachfragt
+        // Ausgabepfad
+        ausgabeLabel = new Label
+        {
+            Text = "Ausgabepfad: ",
+            Ellipsize = EllipsizeMode.Start, // Falls der Text zu lang wird, wird er am Anfang abgeschnitten
+            Selectable = true, // Damit der Text ausgewählt und kopiert werden kann
+            Xalign = 0, // Linksbündig ausrichten
+            Yalign = 0.5f // Vertikal zentriert ausrichten
+        };
+        outputBox.PackStart(ausgabeLabel, false, false, 0);
 
-        outputPathEntry = new Entry();
-        outputPathEntry.PlaceholderText = "Output Path";
-        outputPathEntry.Text = "o.png";
-        mainVBox.PackStart(outputPathEntry, false, false, 10);
 
-        scaleEntry = new Entry();
-        scaleEntry.PlaceholderText = "Logo Scale (e.g., 1.5 = 1/1.5)";
-        scaleEntry.Text = "3";
-        mainVBox.PackStart(scaleEntry, false, false, 10);
+        scaleEntry = new Entry
+        {
+            PlaceholderText = "Logo Scale (e.g., 1.5 = 1/1.5)",
+            Text = "3"
+        };
+        mainBox.PackStart(scaleEntry, false, false, 10);
 
         // Dropdown-Menü für ECC-Level erstellen und mit Optionen füllen
         eccLevelComboBox = new ComboBoxText();
@@ -82,45 +101,47 @@ public partial class HauptFenster : Gtk.Window
         eccLevelComboBox.AppendText("M (Medium)");
         eccLevelComboBox.AppendText("Q (Quartile)");
         eccLevelComboBox.AppendText("H (High)");
-        mainVBox.PackStart(eccLevelComboBox, false, false, 10);
+        mainBox.PackStart(eccLevelComboBox, false, false, 10);
 
         // Eingabefeld für die RGB-Farbe Front hinzufügen
         colorEntryFront = new Entry();
         colorEntryFront.PlaceholderText = "RGB Color (e.g., 0,0,0 for Black)"; // Platzhalter
         colorEntryFront.Text = "0,0,0"; // Standardmäßig auf Schwarz setzen
-        mainVBox.PackStart(colorEntryFront, false, false, 10);
+        mainBox.PackStart(colorEntryFront, false, false, 10);
 
         // Eingabefeld für die RGB-Farbe Back hinzufügen
         colorEntryBack = new Entry();
         colorEntryBack.PlaceholderText = "RGB Color (e.g., 255,255,255 for White)"; // Platzhalter
         colorEntryBack.Text = "255,255,255"; // Standardmäßig auf weiß setzen
-        mainVBox.PackStart(colorEntryBack, false, false, 10);
+        mainBox.PackStart(colorEntryBack, false, false, 10);
 
         // Checkbox Logo
         changeLogoColorCheckbox = new CheckButton("Logo Farbe ändern");
-        mainVBox.PackStart(changeLogoColorCheckbox, false, false, 10);
+        mainBox.PackStart(changeLogoColorCheckbox, false, false, 10);
 
         // Checkbox Hintergrund
         transparentBackgroundCheckbox = new CheckButton("Hintergrund transparent machen");
-        mainVBox.PackStart(transparentBackgroundCheckbox, false, false, 10);
+        mainBox.PackStart(transparentBackgroundCheckbox, false, false, 10);
 
 
         generateButton = new Button("Generate QR Code");
         generateButton.Clicked += OnGenerateButtonClicked;
-        mainVBox.PackStart(generateButton, false, false, 10);
+        mainBox.PackStart(generateButton, false, false, 10);
 
         // TextView für die Konsolenausgaben erstellen
         consoleTextView = new TextView();
         consoleTextView.Editable = false; // Das TextView sollte nicht editierbar sein
-        mainVBox.PackStart(consoleTextView, true, true, 10);
+        mainBox.PackStart(consoleTextView, true, true, 10);
 
-        Add(mainVBox);
+        Add(mainBox);
     }
-    private void OnGenerateButtonClicked(object sender, EventArgs e)
+
+
+    private void OnGenerateButtonClicked(object? sender, EventArgs e)
     {
         string qrText = textEntry.Text;
-        string logoPath = logoPathEntry.Text;
-        string outputPath = outputPathEntry.Text;
+        string logoPath = eingabeLabel.Text;
+        string outputPath = ausgabeLabel.Text;
         string selectedEccLevel = eccLevelComboBox.ActiveText;
         ECCLevel eccCode = TranslateEccLevel(selectedEccLevel);
         bool changeLogoColor = changeLogoColorCheckbox.Active;
@@ -190,30 +211,35 @@ public partial class HauptFenster : Gtk.Window
         buffer.Text = string.Empty;
     }
 
-    private void OnOpenFileButtonClicked(object sender, EventArgs e)
+    private void OnOpenFileButtonClicked(object? sender, EventArgs e)
     {
         // Dateiauswahldialog anzeigen und warten, bis der Benutzer eine Datei auswählt
         if (fileChooserEingabe.Run() == (int)ResponseType.Accept)
         {
             string selectedFilePath = fileChooserEingabe.Filename;
-            logoPathEntry.Text = selectedFilePath;
+            // Setzen Sie den Ausgabepfad im Label
+            eingabeLabel.Text = selectedFilePath;
         }
-
         // Dateiauswahldialog schließen
         fileChooserEingabe.Hide();
     }
 
-    private void OnAusgabeFileButtonClicked(object sender, EventArgs e)
-{
-    // Dateiauswahldialog anzeigen und warten, bis der Benutzer einen Speicherort auswählt
-    if (fileChooserAusgabe.Run() == (int)ResponseType.Accept)
+    private void OnAusgabeFileButtonClicked(object? sender, EventArgs e)
     {
-        string selectedFilePath = fileChooserAusgabe.Filename;
-        outputPathEntry.Text = selectedFilePath;
+        // Dateiauswahldialog anzeigen und warten, bis der Benutzer einen Speicherort auswählt
+        if (fileChooserAusgabe.Run() == (int)ResponseType.Accept)
+        {
+            string selectedFilePath = fileChooserAusgabe.Filename;
+            // Überprüfen, ob die Erweiterung ".png" bereits vorhanden ist
+            if (!selectedFilePath.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            {
+                // Wenn nicht, fügen Sie ".png" am Ende hinzu
+                selectedFilePath += ".png";
+            }
+            ausgabeLabel.Text = selectedFilePath;
+        }
+        // Dateiauswahldialog schließen
+        fileChooserAusgabe.Hide();
     }
-
-    // Dateiauswahldialog schließen
-    fileChooserAusgabe.Hide();
-}
 
 }
