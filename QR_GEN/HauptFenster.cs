@@ -6,8 +6,6 @@ using static QRCoder.QRCodeGenerator;
 public partial class HauptFenster : Gtk.Window
 {
     private Entry textEntry;
-    // private Entry logoPathEntry;
-    // private Entry outputPathEntry;
     private Entry scaleEntry;
     private Button generateButton;
     private ComboBoxText eccLevelComboBox;
@@ -32,9 +30,11 @@ public partial class HauptFenster : Gtk.Window
 
         var mainBox = new Box(Orientation.Vertical, 0);
 
+        var QRLabel = new Label();
+        QRLabel.Text = "Was soll der QR-Code darstellen?";
+        mainBox.PackStart(QRLabel, false, false, 10);
         textEntry = new Entry();
         textEntry.PlaceholderText = "QR Text";
-        textEntry.Text = "Test";
         mainBox.PackStart(textEntry, false, false, 10);
 
 
@@ -91,11 +91,14 @@ public partial class HauptFenster : Gtk.Window
         scaleEntry = new Entry
         {
             PlaceholderText = "Logo Scale (e.g., 1.5 = 1/1.5)",
-            Text = "3"
         };
         mainBox.PackStart(scaleEntry, false, false, 10);
 
         // Dropdown-Menü für ECC-Level erstellen und mit Optionen füllen
+
+        var eccLevelLabel = new Label();
+        eccLevelLabel.Text = "Wählen Sie das ECC-Level:";
+        mainBox.PackStart(eccLevelLabel, false, false, 10);
         eccLevelComboBox = new ComboBoxText();
         eccLevelComboBox.AppendText("L (Low)");
         eccLevelComboBox.AppendText("M (Medium)");
@@ -105,14 +108,12 @@ public partial class HauptFenster : Gtk.Window
 
         // Eingabefeld für die RGB-Farbe Front hinzufügen
         colorEntryFront = new Entry();
-        colorEntryFront.PlaceholderText = "RGB Color (e.g., 0,0,0 for Black)"; // Platzhalter
-        colorEntryFront.Text = "0,0,0"; // Standardmäßig auf Schwarz setzen
+        colorEntryFront.PlaceholderText = "QR-Farbe in RGB (e.g., 0,0,0 for Black)"; // Platzhalter
         mainBox.PackStart(colorEntryFront, false, false, 10);
 
         // Eingabefeld für die RGB-Farbe Back hinzufügen
         colorEntryBack = new Entry();
-        colorEntryBack.PlaceholderText = "RGB Color (e.g., 255,255,255 for White)"; // Platzhalter
-        colorEntryBack.Text = "255,255,255"; // Standardmäßig auf weiß setzen
+        colorEntryBack.PlaceholderText = "Hintergrund in RGB (e.g., 255,255,255 for White)"; // Platzhalter
         mainBox.PackStart(colorEntryBack, false, false, 10);
 
         // Checkbox Logo
@@ -152,12 +153,14 @@ public partial class HauptFenster : Gtk.Window
         string cleanedColorStringBack = colorEntryBack.Text.Trim().Replace(",", ", ");
 
         if (ColorParser.TryParseRgbColor(cleanedColorStringFront, out Rgba32 qrCodeColorFront))
-        {
+        {   
+            int[] rgbfront = ParseRgbColor(cleanedColorStringFront);
             if (ColorParser.TryParseRgbColor(cleanedColorStringBack, out Rgba32 qrCodeColorBack))
             {
+                int[] rgbback = ParseRgbColor(cleanedColorStringBack);
                 if (double.TryParse(scaleEntry.Text, out double scale))
                 {
-                    Generator.GenerateQRCodeWithLogo(qrText, logoPath, outputPath, scale, eccCode, qrCodeColorFront, qrCodeColorBack, changeLogoColor, transparentBackground);
+                    Generator.GenerateQRCodeWithLogo(qrText, logoPath, outputPath, scale, eccCode, rgbfront, rgbback, changeLogoColor, transparentBackground);
                     ClearConsole();
                     AppendToConsole("QR Code mit Logo wurde erstellt und gespeichert.");
                 }
@@ -240,6 +243,24 @@ public partial class HauptFenster : Gtk.Window
         }
         // Dateiauswahldialog schließen
         fileChooserAusgabe.Hide();
+    }
+
+
+    private int[] ParseRgbColor(string colorString)
+    {
+        // Zerlegen Sie die Eingabe anhand von Kommas und Leerzeichen und parsen Sie die Teile in Integer-Werte.
+        string[] components = colorString.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        int[] rgbValues = new int[components.Length];
+
+        for (int i = 0; i < components.Length; i++)
+        {
+            if (int.TryParse(components[i], out int value))
+            {
+                rgbValues[i] = value;
+            }           
+        }
+
+        return rgbValues;
     }
 
 }

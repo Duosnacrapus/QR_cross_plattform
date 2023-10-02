@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5RCqq4V1pmj43VjIUAUoTK5Et2kojG2jz7KTha7YhDhLSiYBvI1fEs5eUGEDhifU4rbIWBzwYbtPOhK6eac+fA==",
+  "dgSpecHash": "w4dpr0ejNjbgOYwOorNcCspIwrBDIifyXNK8dtKDqJQfUuZR+ppINSHz3Tv7uY/q/7MhDO0HfE37rDMFQVP8hA==",
   "success": true,
   "projectFilePath": "/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/QR_GEN.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,9 @@
     "/home/r/.nuget/packages/sixlabors.imagesharp/3.0.2/sixlabors.imagesharp.3.0.2.nupkg.sha512",
     "/home/r/.nuget/packages/sixlabors.imagesharp.drawing/2.0.0/sixlabors.imagesharp.drawing.2.0.0.nupkg.sha512",
     "/home/r/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/home/r/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512"
+    "/home/r/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
+    "/home/r/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/7.0.9/microsoft.netcore.app.runtime.linux-x64.7.0.9.nupkg.sha512",
+    "/home/r/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/7.0.9/microsoft.aspnetcore.app.runtime.linux-x64.7.0.9.nupkg.sha512"
   ],
   "logs": []
 }

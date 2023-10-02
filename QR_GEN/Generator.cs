@@ -12,7 +12,7 @@ using System.IO;
 public class Generator
 {
     public static void GenerateQRCodeWithLogo(string textToEncode, string logoPath, string outputPath, double fractionOfScale, QRCodeGenerator.ECCLevel eccLevel,
-     SixLabors.ImageSharp.PixelFormats.Rgba32 frontColor, SixLabors.ImageSharp.PixelFormats.Rgba32 backColor,
+     int[] frontColor, int[] backColor,
      bool changeLogoColor, bool transparentBackground)
     {
         // QRCodeGenerator erstellen
@@ -54,7 +54,7 @@ public class Generator
                         Rgba32 pixelColor = qrCodeImage[x, y];
 
                         // Check if the pixel is white 
-                        if (pixelColor.R > 200 && pixelColor.G > 200 && pixelColor.B > 200)
+                        if (pixelColor.R > 240 && pixelColor.G > 240 && pixelColor.B > 240)
                         {
                             // farbe des Hintergrunds bzw transparent
                             // pixelColor.A = 0;
@@ -62,14 +62,18 @@ public class Generator
                             { pixelColor.A = 0; }
                             else
                             {
-                                pixelColor = backColor;
+                                pixelColor.R = (byte)backColor[0];
+                                pixelColor.G = (byte)backColor[1];
+                                pixelColor.B = (byte)backColor[2];
                             }
 
                         }
                         else
                         {
                             // Farbe des qr
-                            pixelColor = frontColor;
+                            pixelColor.R = (byte)frontColor[0];
+                            pixelColor.G = (byte)frontColor[1];
+                            pixelColor.B = (byte)frontColor[2];
                         }
 
                         // Update the pixel color in the image
