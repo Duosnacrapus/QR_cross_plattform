@@ -1,2 +1,0 @@
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/linux-x64/publish/QR_GEN.pdb
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/linux-x64/publish/QR_GEN

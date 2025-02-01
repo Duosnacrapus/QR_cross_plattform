@@ -1,2 +1,0 @@
-C:\Users\ropro\Documents\Robin\Projekte\Repositories\QR_cross_plattform\QR_GEN\bin\Release\net8.0\win-x64\publish\QR_GEN.pdb
-C:\Users\ropro\Documents\Robin\Projekte\Repositories\QR_cross_plattform\QR_GEN\bin\Release\net8.0\win-x64\publish\QR_GEN.exe

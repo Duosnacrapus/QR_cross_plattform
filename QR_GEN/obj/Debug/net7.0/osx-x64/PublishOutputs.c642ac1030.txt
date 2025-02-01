@@ -1,2 +1,0 @@
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/osx-x64/publish/QR_GEN.pdb
-/home/r/Documents/Robin/CS_Projekte/QR/QR_GEN/bin/Debug/net7.0/osx-x64/publish/QR_GEN
